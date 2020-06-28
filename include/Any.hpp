@@ -17,7 +17,7 @@ public:
 		that.m_tpIndex = std::type_index(typeid(void));
 	}
 	template<typename U, class = typename std::enable_if<!std::is_same<typename std::decay<U>::type, Any>::value>::type>
-	Any(U&& value) : m_ptr(new Derived<typename std::decay<U>::type>(std::forward<U>(value))), m_tpIndex(std::type_index(typeid(std::decay<U>::type))) {}
+	Any(U&& value) : m_ptr(new Derived<typename std::decay<U>::type>(std::forward<U>(value))), m_tpIndex(typeid(typename std::decay<U>::type)) {}
 
 	bool IsNull() const { return !bool(m_ptr); }
 
