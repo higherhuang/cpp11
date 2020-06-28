@@ -1,4 +1,4 @@
-#ifndef __SINGLETON_HPP__
+﻿#ifndef __SINGLETON_HPP__
 #define __SINGLETON_HPP__
 
 #include "NonCopyable.hpp"

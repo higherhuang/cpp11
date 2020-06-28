@@ -1,4 +1,4 @@
-#ifndef __ANY_HPP__
+ï»¿#ifndef __ANY_HPP__
 #define __ANY_HPP__
 
 #include <typeindex>
@@ -38,7 +38,7 @@ public:
 		auto derived = dynamic_cast<Derived<U>*>(m_ptr.get());
 		return derived->m_value;
 	}
-	//¸³Öµ
+	//èµ‹å€¼
 	Any& operator=(const Any& a)
 	{
 		if (m_ptr == a.m_ptr) return *this;
@@ -46,7 +46,7 @@ public:
 		m_tpIndex = a.m_tpIndex;
 		return *this;
 	}
-	//ÒÆ¶¯¸³Öµ
+	//ç§»åŠ¨èµ‹å€¼
 	Any& operator=(Any&& a)
 	{
 		if (m_ptr == a.m_ptr) return *this;

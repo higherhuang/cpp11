@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <string>
 #include "IocContainer.hpp"
 
@@ -44,11 +44,11 @@ public:
 
 void InitIocContainer()
 {
-	//³õÊ¼»¯µ¥Àý¶ÔÏó
+	//åˆå§‹åŒ–å•ä¾‹å¯¹è±¡
 	IocContainerAgent::Instance();
 
-	//×¢Èë×ÓÀàÓëÒµÎñÀàÐÍµÄÒÀÀµ¹ØÏµ Ê¹µÃIOC»ñµÃ´´½¨¶ÔÏóµÄ¿ØÖÆÈ¨
-	//ÊµÏÖ¿ØÖÆµÄ·´×ª
+	//æ³¨å…¥å­ç±»ä¸Žä¸šåŠ¡ç±»åž‹çš„ä¾èµ–å…³ç³» ä½¿å¾—IOCèŽ·å¾—åˆ›å»ºå¯¹è±¡çš„æŽ§åˆ¶æƒ
+	//å®žçŽ°æŽ§åˆ¶çš„åè½¬
 	IocContainerAgent::GetInstance()->RegisterType<Base, Derived_0, const std::string&, int, int*>("BS,0");
 	IocContainerAgent::GetInstance()->RegisterType<Base, Derived_1, const std::string&, int, int*>("BS,1");
 }
@@ -56,10 +56,10 @@ void InitIocContainer()
 void BusinessProcess(int nProType, const std::string& strConstructParam, const std::string& strJobParam, int nParam)
 {
 	std::string strIocKey = std::string("BS,") + std::to_string(nProType);
-	//¸ù¾Ý²»Í¬µÄÒµÎñÀàÐÍ´´½¨²»Í¬µÄ×ÓÀàÀ´´¦ÀíÒµÎñ£¬ÊµÏÖ´¦ÀíµÄµØ·½Óë×ÓÀà½âñîÖ»ÒÀÀµ»ùÀàºÍIOCÈÝÆ÷£¬ÊµÏÖ¿ØÖÆ·´×ª
-	//¶ÔÓÚconst std::string&ÀàËÆÀàÐÍµÄ²ÎÊýÐèÒªÏÔÊ½Ö¸³öÄ£°å²ÎÊýµÄÀàÐÍ£¬
-	//¶ø¶ÔÓÚint¡¢int*ÀàËÆµÄ²ÎÊýÔò²»ÓÃÏÔÊ½µÄÖ¸³öÄ£°å²ÎÊýµÄÀàÐÍ£¬¿ÉÒÔ×Ô¶¯ÍÆµ¼
-	//µ±È»ÄãÒ²¿ÉÒÔÏÔÊ½µÄÖ¸¶¨²ÎÊýµÄÀàÐÍ
+	//æ ¹æ®ä¸åŒçš„ä¸šåŠ¡ç±»åž‹åˆ›å»ºä¸åŒçš„å­ç±»æ¥å¤„ç†ä¸šåŠ¡ï¼Œå®žçŽ°å¤„ç†çš„åœ°æ–¹ä¸Žå­ç±»è§£è€¦åªä¾èµ–åŸºç±»å’ŒIOCå®¹å™¨ï¼Œå®žçŽ°æŽ§åˆ¶åè½¬
+	//å¯¹äºŽconst std::string&ç±»ä¼¼ç±»åž‹çš„å‚æ•°éœ€è¦æ˜¾å¼æŒ‡å‡ºæ¨¡æ¿å‚æ•°çš„ç±»åž‹ï¼Œ
+	//è€Œå¯¹äºŽintã€int*ç±»ä¼¼çš„å‚æ•°åˆ™ä¸ç”¨æ˜¾å¼çš„æŒ‡å‡ºæ¨¡æ¿å‚æ•°çš„ç±»åž‹ï¼Œå¯ä»¥è‡ªåŠ¨æŽ¨å¯¼
+	//å½“ç„¶ä½ ä¹Ÿå¯ä»¥æ˜¾å¼çš„æŒ‡å®šå‚æ•°çš„ç±»åž‹
 	auto pBase = IocContainerAgent::GetInstance()->ResolveShared<Base, const std::string&>(strIocKey, strConstructParam, nParam, &nParam);
 	if (pBase)
 	{
@@ -67,17 +67,17 @@ void BusinessProcess(int nProType, const std::string& strConstructParam, const s
 	}
 	else
 	{
-		std::cout << "ÎÞ·¨½âÎöµÄÒµÎñÀàÐÍBase[" << strIocKey << "]" << std::endl;
+		std::cout << "æ— æ³•è§£æžçš„ä¸šåŠ¡ç±»åž‹Base[" << strIocKey << "]" << std::endl;
 	}
 }
 
 
 int main()
 {
-	//³õÊ¼»¯ IOC ÈÝÆ÷
+	//åˆå§‹åŒ– IOC å®¹å™¨
 	InitIocContainer();
 
-	//´¦ÀíÒµÎñ
+	//å¤„ç†ä¸šåŠ¡
 	BusinessProcess(0, "ConstructParam : for test constructor param.", "JobParam : for test base class IF param.", 0);
 	BusinessProcess(1, "ConstructParam : for test constructor param.", "JobParam : for test base class IF param.", 0);
 	BusinessProcess(2, "ConstructParam : for test constructor param.", "JobParam : for test base class IF param.", 0);
