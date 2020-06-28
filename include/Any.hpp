@@ -17,7 +17,7 @@ public:
 		that.m_tpIndex = std::type_index(typeid(void));
 	}
 	template<typename U, class = typename std::enable_if<!std::is_same<typename std::decay<U>::type, Any>::value>::type>
-	Any(U&& value) : m_ptr(new Derived<typename std::decay<U>::type>(std::forward<U>(value))), m_tpIndex(typeid(std::decay<U>::type)) {}
+	Any(U&& value) : m_ptr(new Derived<typename std::decay<U>::type>(std::forward<U>(value))), m_tpIndex(std::type_index(typeid(std::decay<U>::type))) {}
 
 	bool IsNull() const { return !bool(m_ptr); }
 
@@ -33,7 +33,7 @@ public:
 		if (!Is<U>())
 		{
 			std::string str = std::string("Any::AnyCast can not cast [") + typeid(U).name() + "] to [" + m_tpIndex.name() + "]";
-			throw std::exception(str.c_str());
+			throw std::logic_error(str.c_str());
 		}
 		auto derived = dynamic_cast<Derived<U>*>(m_ptr.get());
 		return derived->m_value;
