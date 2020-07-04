@@ -77,20 +77,20 @@ struct function_traits<const Callable*> : function_traits<Callable> {};
 template <typename Function>
 typename function_traits<Function>::stl_function_type to_function(const Function& lambda)
 {
-	return static_cast<function_traits<Function>::stl_function_type>(lambda);
+	return static_cast<typename function_traits<Function>::stl_function_type>(lambda);
 }
 
 
 template <typename Function>
 typename function_traits<Function>::stl_function_type to_function(Function&& lambda)
 {
-	return static_cast<function_traits<Function>::stl_function_type>(std::forward<Function>(lambda));
+	return static_cast<typename function_traits<Function>::stl_function_type>(std::forward<Function>(lambda));
 }
 
 template <typename Function>
 typename function_traits<Function>::pointer to_function_pointer(const Function& lambda)
 {
-	return static_cast<function_traits<Function>::pointer>(std::forward<Function>(lambda));
+	return static_cast<typename function_traits<Function>::pointer>(std::forward<Function>(lambda));
 }
 
 
