@@ -21,7 +21,14 @@ void RegisterGlobalFunc()
 
 int main()
 {
+	//注册全局函数
 	RegisterGlobalFunc();
+
+	//注册lambda
+	msgBus.Attach([](int a) {
+		std::cout << __FUNCTION__ << " called." << std::endl;
+		return a;
+	}, "GlobalFunc_int_int");
 
 	msgBus.SendReq<int, int>(1, "GlobalFunc_int_int");
 
