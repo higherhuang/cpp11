@@ -17,3 +17,4 @@ set(CMAKE_INSTALL_PREFIX "./")
 
 add_subdirectory(include)
 add_subdirectory(IocContainerTest)
+add_subdirectory(MessageBusTest)
