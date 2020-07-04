@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <string>
 #include "MessageBus.hpp"
 
@@ -13,7 +13,7 @@ int GlobalFunc_int_int(int a)
 }
 void RegisterGlobalFunc()
 {
-	std::cout << "ÏòÏûÏ¢×ÜÏß×¢²áÈ«¾Öº¯Êý£¬GlobalFunc_int_int" << std::endl;
+	std::cout << "å‘æ¶ˆæ¯æ€»çº¿æ³¨å†Œå…¨å±€å‡½æ•°ï¼ŒGlobalFunc_int_int" << std::endl;
 	msgBus.Attach(&GlobalFunc_int_int, "GlobalFunc_int_int");
 }
 
